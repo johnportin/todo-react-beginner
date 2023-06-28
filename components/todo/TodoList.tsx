@@ -2,6 +2,7 @@
 
 import { TodoContext } from '@/context/TodoContext';
 import { useContext } from 'react';
+import TodoItem from './TodoItem';
 
 interface TodoListProps {}
 
@@ -10,7 +11,7 @@ const TodoList: React.FC<TodoListProps> = () => {
   return (
     <div className="flex flex-col">
       {todos.map((todo, index) => (
-        <div key={index}>{todo}</div>
+        <TodoItem key={index} description={todo} />
       ))}
     </div>
   );

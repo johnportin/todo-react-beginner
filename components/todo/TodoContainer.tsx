@@ -2,6 +2,7 @@
 
 import { TodoContext } from '@/context/TodoContext';
 import { useState } from 'react';
+import AddTodo from './AddTodo';
 
 interface TodoContainerProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const TodoContainer: React.FC<TodoContainerProps> = ({ children }) => {
         }}
       >
         {children}
+        <AddTodo />
       </TodoContext.Provider>
     </>
   );
