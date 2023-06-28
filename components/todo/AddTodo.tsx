@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useToast } from '../ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { v4 as uuidv4 } from 'uuid';
 
 // shadcn-ui components
 import { Button } from '@/components/ui/button';
@@ -18,6 +19,7 @@ import { Input } from '@/components/ui/input';
 import * as z from 'zod';
 import { useContext } from 'react';
 import { TodoContext } from '@/context/TodoContext';
+import { randomUUID } from 'crypto';
 
 const addTodoSchema = z.object({
   description: z
@@ -40,15 +42,13 @@ const AddTodo: React.FC<AddTodoProps> = () => {
   });
 
   function onSubmit(values: z.infer<typeof addTodoSchema>) {
-    setTodos([...todos, values.description]);
+    setTodos([...todos, { id: uuidv4(), text: values.description }]);
 
     toast({
       title: 'Todo added!',
       description: `You added ${values.description}`,
     });
   }
-
-  const myClass = 'border border-gray-300 rounded-md p-2 m-2';
 
   return (
     <Form {...form}>

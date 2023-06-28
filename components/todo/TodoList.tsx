@@ -10,8 +10,8 @@ const TodoList: React.FC<TodoListProps> = () => {
   const { todos, setTodos } = useContext(TodoContext);
   return (
     <div className="flex flex-col">
-      {todos.map((todo, index) => (
-        <TodoItem key={index} description={todo} />
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} id={todo.id} description={todo.text} />
       ))}
     </div>
   );

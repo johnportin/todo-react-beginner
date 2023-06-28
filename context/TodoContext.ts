@@ -1,8 +1,13 @@
 import { createContext } from 'react';
 
+type todo = {
+  id: string;
+  text: string;
+};
+
 type TodoContextType = {
-  todos: string[];
-  setTodos: (todos: string[]) => void;
+  todos: todo[];
+  setTodos: (todos: todo[]) => void;
 };
 
 export const TodoContext = createContext<TodoContextType>({
