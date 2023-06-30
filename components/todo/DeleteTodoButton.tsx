@@ -3,14 +3,14 @@ import { useToast } from '../ui/use-toast';
 import { TodoContext } from '@/context/TodoContext';
 import { useContext } from 'react';
 
-interface DeleteTodoProps {
+interface DeleteTodoButtonProps {
   id: string;
 }
 
-const DeleteTodo: React.FC<DeleteTodoProps> = ({ id }) => {
+const DeleteTodoButton: React.FC<DeleteTodoButtonProps> = ({ id }) => {
   const { toast } = useToast();
   const { todos, setTodos } = useContext(TodoContext);
-  const deleteTodo = () => {
+  const DeleteTodoButton = () => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
 
@@ -22,10 +22,10 @@ const DeleteTodo: React.FC<DeleteTodoProps> = ({ id }) => {
     });
   };
   return (
-    <div className="hover:bg-slate-200" onClick={deleteTodo}>
-      <HiTrash />
+    <div className="hover:bg-slate-200" onClick={DeleteTodoButton}>
+      <HiTrash size={24} />
     </div>
   );
 };
 
-export default DeleteTodo;
+export default DeleteTodoButton;

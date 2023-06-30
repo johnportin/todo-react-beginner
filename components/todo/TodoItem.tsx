@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import DeleteTodo from './DeleteTodo';
+import DeleteTodoButton from './DeleteTodoButton';
+import EditTodoButton from './EditTodoButton';
 import EditTodo from './EditTodo';
 
 interface TodoItemProps {
@@ -23,20 +24,24 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, description }) => {
       m-2
     "
     >
-      {/* 
-        Just set a ternary operator that checks if isEditing is true of false.
-        If it's true, then render a form for editing the current description, otherwise render the
-        description.
-      */}
-      {isEditing ? 'Editing' : description}
-      <div className="flex flex-row">
+      {isEditing ? (
         <EditTodo
           id={id}
           description={description}
           setIsEditing={setIsEditing}
           isEditing={isEditing}
         />
-        <DeleteTodo id={id} />
+      ) : (
+        description
+      )}
+      <div className="flex flex-row gap-2">
+        <EditTodoButton
+          id={id}
+          description={description}
+          setIsEditing={setIsEditing}
+          isEditing={isEditing}
+        />
+        <DeleteTodoButton id={id} />
       </div>
     </div>
   );
