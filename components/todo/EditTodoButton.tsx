@@ -17,7 +17,7 @@ const EditTodoButton: React.FC<EditTodoButtonProps> = ({
   const { toast } = useToast();
 
   const handleClick = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(true);
   };
 
   return (

@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import * as z from 'zod';
 import { useToast } from '../ui/use-toast';
+import todoSchema from '@/lib/schema/todoSchema';
 
 interface EditTodoProps {
   id: string;
@@ -23,13 +24,6 @@ interface EditTodoProps {
   isEditing: boolean;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const addTodoSchema = z.object({
-  description: z
-    .string()
-    .min(1, { message: 'todo must be at least 1 character' })
-    .max(255, { message: 'todo must be less than 255 characters' }),
-});
 
 const EditTodo: React.FC<EditTodoProps> = ({
   id,
@@ -39,14 +33,14 @@ const EditTodo: React.FC<EditTodoProps> = ({
 }) => {
   const { toast } = useToast();
   const { todos, setTodos } = useContext(TodoContext);
-  const form = useForm<z.infer<typeof addTodoSchema>>({
-    resolver: zodResolver(addTodoSchema),
+  const form = useForm<z.infer<typeof todoSchema>>({
+    resolver: zodResolver(todoSchema),
     defaultValues: {
       description,
     },
   });
 
-  function onSubmit(values: z.infer<typeof addTodoSchema>) {
+  function onSubmit(values: z.infer<typeof todoSchema>) {
     const newTodos = [
       ...todos.filter((todo) => todo.id !== id),
       { id: id, text: values.description },
@@ -74,7 +68,7 @@ const EditTodo: React.FC<EditTodoProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} />
+                  <Input autoFocus className="border-none" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

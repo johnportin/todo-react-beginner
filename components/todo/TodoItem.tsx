@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import DeleteTodoButton from './DeleteTodoButton';
 import EditTodoButton from './EditTodoButton';
 import EditTodo from './EditTodo';
@@ -10,6 +10,7 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ id, description }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div

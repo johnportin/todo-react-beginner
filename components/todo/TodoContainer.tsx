@@ -3,7 +3,6 @@
 import { TodoContext } from '@/context/TodoContext';
 import { useState } from 'react';
 import AddTodo from './AddTodo';
-import { idText } from 'typescript';
 import { v4 as uuidv4 } from 'uuid';
 
 interface TodoContainerProps {

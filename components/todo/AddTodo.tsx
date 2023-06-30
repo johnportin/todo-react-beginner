@@ -19,28 +19,20 @@ import { Input } from '@/components/ui/input';
 import * as z from 'zod';
 import { useContext } from 'react';
 import { TodoContext } from '@/context/TodoContext';
+import todoSchema from '@/lib/schema/todoSchema';
 
-const addTodoSchema = z.object({
-  description: z
-    .string()
-    .min(1, { message: 'todo must be at least 1 character' })
-    .max(255, { message: 'todo must be less than 255 characters' }),
-});
-
-interface AddTodoProps {}
-
-const AddTodo: React.FC<AddTodoProps> = () => {
+const AddTodo: React.FC = () => {
   const { toast } = useToast();
   const { todos, setTodos } = useContext(TodoContext);
 
-  const form = useForm<z.infer<typeof addTodoSchema>>({
-    resolver: zodResolver(addTodoSchema),
+  const form = useForm<z.infer<typeof todoSchema>>({
+    resolver: zodResolver(todoSchema),
     defaultValues: {
       description: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof addTodoSchema>) {
+  function onSubmit(values: z.infer<typeof todoSchema>) {
     setTodos([...todos, { id: uuidv4(), text: values.description }]);
 
     toast({
