@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import DeleteTodo from './DeleteTodo';
+import EditTodo from './EditTodo';
 
 interface TodoItemProps {
   id: string;
@@ -6,6 +8,8 @@ interface TodoItemProps {
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ id, description }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <div
       className="
@@ -19,8 +23,21 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, description }) => {
       m-2
     "
     >
-      {description}
-      <DeleteTodo id={id} />
+      {/* 
+        Just set a ternary operator that checks if isEditing is true of false.
+        If it's true, then render a form for editing the current description, otherwise render the
+        description.
+      */}
+      {isEditing ? 'Editing' : description}
+      <div className="flex flex-row">
+        <EditTodo
+          id={id}
+          description={description}
+          setIsEditing={setIsEditing}
+          isEditing={isEditing}
+        />
+        <DeleteTodo id={id} />
+      </div>
     </div>
   );
 };

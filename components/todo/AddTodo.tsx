@@ -48,6 +48,8 @@ const AddTodo: React.FC<AddTodoProps> = () => {
       title: 'Todo added!',
       description: `You added ${values.description}`,
     });
+
+    form.reset();
   }
 
   return (
