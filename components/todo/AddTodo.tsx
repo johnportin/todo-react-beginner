@@ -33,7 +33,15 @@ const AddTodo: React.FC = () => {
   });
 
   function onSubmit(values: z.infer<typeof todoSchema>) {
-    setTodos([...todos, { id: uuidv4(), text: values.description }]);
+    setTodos([
+      ...todos,
+      {
+        id: uuidv4(),
+        text: values.description,
+        isComplete: false,
+        isVisible: true,
+      },
+    ]);
 
     toast({
       title: 'Todo added!',

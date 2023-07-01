@@ -10,3 +10,4 @@ This is a basic 'todo' app.
 ## Optional features
 
 - ~~Edit a task~~
+- Filter todos by completed status

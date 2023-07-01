@@ -42,16 +42,12 @@ const EditTodo: React.FC<EditTodoProps> = ({
 
   function onSubmit(values: z.infer<typeof todoSchema>) {
     const newTodos = [
-      ...todos.filter((todo) => todo.id !== id),
-      { id: id, text: values.description },
+      ...todos.map((todo) => {
+        return todo.id === id ? { ...todo, text: values.description } : todo;
+      }),
     ];
+
     setTodos(newTodos);
-
-    toast({
-      title: 'Todo Edited',
-      description: `You changed ${values.description}`,
-    });
-
     setIsEditing(false);
   }
 

@@ -10,9 +10,18 @@ const TodoList: React.FC<TodoListProps> = () => {
   const { todos, setTodos } = useContext(TodoContext);
   return (
     <div className="flex flex-col">
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} id={todo.id} description={todo.text} />
-      ))}
+      {todos.map(
+        (todo) =>
+          todo.isVisible && (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              description={todo.text}
+              isComplete={todo.isComplete}
+              isVisible={todo.isVisible}
+            />
+          )
+      )}
     </div>
   );
 };
