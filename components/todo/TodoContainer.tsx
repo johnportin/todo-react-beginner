@@ -33,18 +33,27 @@ const TodoContainer: React.FC<TodoContainerProps> = ({ children }) => {
   ]);
 
   return (
-    <>
+    <div className="flex justify-center">
       <TodoContext.Provider
         value={{
           todos,
           setTodos,
         }}
       >
-        {children}
-        <AddTodo />
-        <FilterTodos />
+        <div
+          className="
+            flex
+            flex-col
+            max-w-xl
+
+          "
+        >
+          {children}
+          <AddTodo />
+          <FilterTodos />
+        </div>
       </TodoContext.Provider>
-    </>
+    </div>
   );
 };
 

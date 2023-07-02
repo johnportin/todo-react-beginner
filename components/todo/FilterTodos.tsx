@@ -1,12 +1,13 @@
 import { Switch } from '@/components/ui/switch';
 import { TodoContext } from '@/context/TodoContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const FilterTodos = () => {
   const { todos, setTodos } = useContext(TodoContext);
+  const [isChecked, setIsChecked] = useState(false);
   return (
-    <div>
-      <p>Show Completed</p>
+    <div className="flex flex-row justify-between">
+      {isChecked ? <p>Hide completed</p> : <p>Show completed</p>}
       <Switch
         onCheckedChange={() => {
           setTodos(
@@ -16,6 +17,7 @@ const FilterTodos = () => {
                 : todo;
             })
           );
+          setIsChecked(!isChecked);
         }}
       />
     </div>

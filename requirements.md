@@ -5,9 +5,9 @@ This is a basic 'todo' app.
 - ~~Display a list of the currently stored tasks~~
 - ~~Add a new task~~
 - ~~Delete a task~~
-- Mark a task as completed
+- ~~Mark a task as completed~~
 
 ## Optional features
 
 - ~~Edit a task~~
-- Filter todos by completed status
+- ~~Filter todos by completed status~~
